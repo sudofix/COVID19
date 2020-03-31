@@ -24,7 +24,7 @@ df = pd.DataFrame(data)
 df.set_index('Country', inplace=True)
 l.append(df)
 df.to_csv('All.csv')
-l[2].T.to_csv('AllTransposed.csv')
+l[2].T.to_csv('Transposed.csv')
 # ---------------Prediction and Plots---------------------------------
 
 
