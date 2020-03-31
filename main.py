@@ -73,6 +73,12 @@ plt.legend(loc="upper left")
 plt.get_current_fig_manager().resize(1600, 900)
 plt.tight_layout()
 # ----------------------------------------
+plt.figure('Skewness')
+sk = l[3].groupby(by='Total Deaths').count().iloc[:, 0]
+sk.index = sk.index.map(str)
+plt.xticks(rotation='vertical')
+plt.plot(sk, label='Total Death')
+# ------------------------------------------
 datacursor()
 plt.show()
 # ------------------------Correlation---------------------
