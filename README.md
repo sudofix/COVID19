@@ -1,6 +1,6 @@
 # COVID-19
 Using COVID-19 Datasets From Johns Hopkins University Repository i did some analytics and visualisation which includes the following
-- Grouping Data By Country instead of Province 
+- Grouping and Merging Data By Country instead of Province/State
 - Visualizing Egypt's Confirmed Cases Progress and Making a Predictive Model For The Next 3 Days as an Exponential Growth
 ![Image](Egypt_Progress_and_Prediction.png)
 - Visualizing Boxblots of Total Confirmed, Recovered, Deaths & Active Cases World Wide
