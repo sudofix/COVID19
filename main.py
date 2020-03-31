@@ -6,37 +6,43 @@ from scipy.spatial import distance
 import mplcursors
 from mpldatacursor import datacursor
 
-# ---------------------prepare dataset--------------------------
+# ---------------------preparing the dataset--------------------------
 links = ['recovered', 'deaths', 'confirmed']
 l = list()
 for item in links:
+    # reding dataset from online csv files
     df = pd.read_csv(
         "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_" + item + "_global.csv")
+    # droping province and longitude and latitude columns because they won't be needed
     df.drop(df.columns[[0, 2, 3]], axis=1, inplace=True)
+    # merging cities data by country
     df = df.groupby('Country/Region').sum()
     df.index.rename('Country', inplace=True)
+    # exporting refined dataset to csv file
     df.to_csv(item+'.csv')
     l.append(df)
-
+# creating a summary dataset file for the most recent data from different datasets
 data = {'Country':  l[0].index.tolist(), 'Total Cases': l[2].iloc[:, -1].tolist(
 ), 'Total Deaths': l[1].iloc[:, -1].tolist(), 'Total Recovered': l[0].iloc[:, -1].tolist(), 'Active Cases': (l[2].iloc[:, -1]-l[1].iloc[:, -1]-l[0].iloc[:, -1]).tolist()}
 df = pd.DataFrame(data)
 df.set_index('Country', inplace=True)
 l.append(df)
 df.to_csv('All.csv')
+# creating a transposed dataset to be used in rapidminer
 l[2].T.to_csv('Transposed.csv')
 # ---------------Prediction and Plots---------------------------------
 
-
+# defining exponential function
 def func(x, a, b, c):
     return a * np.exp(b * x) + c
 
-
+#collecting data to be used fro prediction
 xdata = range(27)
 ydata = l[2].loc['Egypt', '3/4/20':].tolist()
+#making prediction equation by fitting data to the exponential function
 popt, pcov = curve_fit(func, xdata, ydata)
 xdata = range(30)
-# ----------------------------------------------
+# ---------------------------------------------
 plt.figure('Egypt Progress and Prediction')
 plt.plot(xdata, func(xdata, *popt), label='Prediction')
 plt.xlabel('Date')
@@ -100,6 +106,7 @@ k = 0
 eu = []
 ma = []
 su = []
+#calculating supermum similarities manually
 while i < len(dis):
     j = i + 1
     while j < len(dis):
