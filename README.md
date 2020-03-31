@@ -7,10 +7,15 @@ Using COVID-19 Datasets From Johns Hopkins University Repository i did some anal
 ![Image](Boxplots.png)
 - Visualizing China's, Italy's, Iran's, Spain's & USA's Confirmed Cases Progress
 ![Image](China%2C_Iran%2C__Italy%2C_Spain_%26_USA_Progress.png)
-- Calculating Similarities Between Total Confirmed, Recovered, Deaths & Active Cases Using Different Methods (Euclidean Distance, Manhattan Distance, Supermum Distance)
+- Calculating Similarities Between Total Confirmed, Recovered, Deaths & Active Cases Using Different Methods (Euclidean, Manhattan, Supermum)
 ![Image](distance.png)
 - Calculating Skewness of Total Confirmed, Recovered, Deaths & Active Cases Data
 ![Image](Skewness.png)
 ![Image](skew.png)
 - Calculating Correlation Between Total Confirmed, Recovered, Deaths & Active Cases Using Different Methods (Pearson, Kendall, Spearman)
 ![Image](correlation.png)
+-------------------------------------------------------------
+Used Python with
+- Pandas to Import & Manipulate the Data
+- Matplotlib to Visualize the Data
+- Scipy to Make Predictive Model
