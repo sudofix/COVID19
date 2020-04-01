@@ -33,15 +33,18 @@ l[2].T.to_csv('Transposed.csv')
 # ---------------Prediction and Plots---------------------------------
 
 # defining exponential function
+
+
 def func(x, a, b, c):
     return a * np.exp(b * x) + c
 
-#collecting data to be used fro prediction
-xdata = range(27)
+
+# collecting data to be used fro prediction
+xdata = range(l[2].iloc[2, :].count()-42)
 ydata = l[2].loc['Egypt', '3/4/20':].tolist()
-#making prediction equation by fitting data to the exponential function
+# making prediction equation by fitting data to the exponential function
 popt, pcov = curve_fit(func, xdata, ydata)
-xdata = range(30)
+xdata = range(l[2].iloc[2, :].count()-42+3)
 # ---------------------------------------------
 plt.figure('Egypt Progress and Prediction')
 plt.plot(xdata, func(xdata, *popt), label='Prediction')
@@ -84,6 +87,8 @@ sk = l[3].groupby(by='Total Deaths').count().iloc[:, 0]
 sk.index = sk.index.map(str)
 plt.xticks(rotation='vertical')
 plt.plot(sk, label='Total Death')
+plt.get_current_fig_manager().resize(1600, 900)
+plt.tight_layout()
 # ------------------------------------------
 datacursor()
 plt.show()
@@ -106,7 +111,7 @@ k = 0
 eu = []
 ma = []
 su = []
-#calculating supermum similarities manually
+# calculating supermum similarities manually
 while i < len(dis):
     j = i + 1
     while j < len(dis):
