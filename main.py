@@ -40,11 +40,11 @@ def func(x, a, b, c):
 
 
 # collecting data to be used fro prediction
-xdata = range(l[2].iloc[2, :].count()-42)
-ydata = l[2].loc['Egypt', '3/4/20':].tolist()
+xdata = range(l[2].loc['Egypt', '3/4/20':'4/18/20'].count())
+ydata = l[2].loc['Egypt', '3/4/20':'4/18/20'].tolist()
 # making prediction equation by fitting data to the exponential function
 popt, pcov = curve_fit(func, xdata, ydata)
-xdata = range(l[2].iloc[2, :].count()-42+3)
+xdata = range(l[2].loc['Egypt', '3/4/20':].count()+10)
 # ---------------------------------------------
 plt.figure('Egypt Progress and Prediction')
 plt.plot(xdata, func(xdata, *popt), label='Prediction')
